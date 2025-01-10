@@ -4,11 +4,224 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<style>
+			.nav-link > h1 {
+				font-weight: 300;
+				color: #aaa;
+				cursor: pointer;
+				transition: ease-in-out 200ms;
+			}
+			.nav-link > h1:hover {
+				color: rgb(90, 90, 90);
+			}
+			.nav-link.active > h1 {
+				color: rgb(36, 36, 36);
+			}
+			.nav-icon > img {
+				filter: grayscale(100%) brightness(0.5) contrast(0.2);
+				transition: filter 0.3s ease; /* Optional: for smooth transitions */
+			}
+			.nav-icon > img:hover {
+				filter: none;
+				cursor: pointer;
+			}
+			.nav-menu {
+				position: absolute;
+				top: 1em;
+				right: 1em;
+				background-color: transparent;
+				width: 35px;
+				height: 35px;
+				border: none;
+				padding: 2px 5px;
+				transition: 200ms ease-in;
+				display: none;
+				z-index: 10000;
+			}
+			.nav-menu:hover {
+				transform: scale(1.2);
+			}
+			@media (max-width: 600px) {
+				.nav-menu {
+					display: block;
+				}
+				.page-nav {
+					display: none !important;
+				}
+			}
+		</style>
 	</head>
 	<body>
+		<div class="container-fluid bg-body-tertiary border">
+			<div class="row profile-img-container mt-1 mb-3" style="height: 200px">
+				<div class="col col-12" style="height: 100%">
+					<img
+						src="./assets/images/profile-pic-chill (2).png"
+						alt="stefano nebo"
+						class="d-block rounded w-100"
+						style="height: auto; max-height: 100%; object-fit: contain"
+					/>
+				</div>
+			</div>
+			<div class="row justify-content-md-center text-center my-3 page-nav">
+				<div class="col col-lg-auto nav-link mx-4 active" tabindex="0">
+					<h1 class="display-5">Portfolio</h1>
+				</div>
+				<div class="col col-lg-auto nav-link mx-4" tabindex="0">
+					<h1 class="display-5">About</h1>
+				</div>
+				<div class="col col-lg-auto mx-4 nav-link" tabindex="0">
+					<h1 class="display-5">Contact</h1>
+				</div>
+			</div>
+			<div class="row justify-content-center text-center my-3 mb-5">
+				<a class="col col-auto nav-icon mx-2" tabindex="0">
+					<img src="./assets/images/linkedin.png" alt="" width="25px" />
+				</a>
+				<a class="col col-auto nav-icon mx-2" tabindex="0">
+					<img
+						src="./assets/images/211904_social_github_icon (1).png"
+						alt=""
+						width="25px"
+					/>
+				</a>
+				<a class="col col-auto nav-icon mx-2" tabindex="0">
+					<img src="./assets/images/whatsapp.png" alt="" width="25px" />
+				</a>
+			</div>
+		</div>
+		<!-- nav modal trigger -->
+		<button
+			class="nav-menu"
+			id="fullScreenNavModal"
+			data-bs-toggle="modal"
+			data-bs-target="#navModal"
+		>
+			<img
+				src="./assets/images/menu.png"
+				alt=""
+				style="width: 100%; object-fit: contain"
+			/>
+		</button>
+		<!-- nav modal -->
+		<div
+			class="modal fade"
+			id="navModal"
+			tabindex="-1"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-fullscreen">
+				<div class="modal-content">
+					<!-- <button
+						type="button"
+						class="btn-close text-end"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button> -->
+					<div
+						class="modal-body d-flex justify-content-center align-items-center"
+					>
+						<div class="row g-3 justify-content-center text-center">
+							<div
+								class="col col-12 justify-content-center active nav-link"
+								tabindex="0"
+							>
+								<h1 class="display-5">Portfolio</h1>
+							</div>
+							<div
+								class="col col-12 justify-content-center nav-link"
+								tabindex="0"
+							>
+								<h1 class="display-5">About</h1>
+							</div>
+							<div
+								class="col col-12 justify-content-center nav-link"
+								tabindex="0"
+							>
+								<h1 class="display-5">Contact</h1>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<div class="row justify-content-center text-center">
+							<a class="col col-auto nav-icon mx-2" tabindex="0">
+								<img src="./assets/images/linkedin.png" alt="" width="45px" />
+							</a>
+							<a class="col col-auto nav-icon mx-2" tabindex="0">
+								<img
+									src="./assets/images/211904_social_github_icon (1).png"
+									alt=""
+									width="45px"
+								/>
+							</a>
+							<a class="col col-auto nav-icon mx-2" tabindex="0">
+								<img src="./assets/images/whatsapp.png" alt="" width="45px" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container py-4 px-3 mx-auto">
 			<h1>Hello, Bootstrap and Webpack!</h1>
 			<button class="btn btn-primary">Primary button</button>
+		</div>
+		<a
+			class="btn btn-primary"
+			data-bs-toggle="offcanvas"
+			href="#offcanvasExample"
+			role="button"
+			aria-controls="offcanvasExample"
+		>
+			Link with href
+		</a>
+		<button
+			class="btn btn-primary"
+			type="button"
+			data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvasExample"
+			aria-controls="offcanvasExample"
+		>
+			Button with data-bs-target
+		</button>
+
+		<div
+			class="offcanvas offcanvas-start"
+			tabindex="-1"
+			id="offcanvasExample"
+			aria-labelledby="offcanvasExampleLabel"
+		>
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="offcanvas"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="offcanvas-body">
+				<div>
+					Some text as placeholder. In real life you can have the elements you
+					have chosen. Like, text, images, lists, etc.
+				</div>
+				<div class="dropdown mt-3">
+					<button
+						class="btn btn-secondary dropdown-toggle"
+						type="button"
+						data-bs-toggle="dropdown"
+					>
+						Dropdown button
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#">Action</a></li>
+						<li><a class="dropdown-item" href="#">Another action</a></li>
+						<li><a class="dropdown-item" href="#">Something else here</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
