@@ -4,52 +4,17 @@ import './scss/styles.scss';
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap';
 import { EMAIL_KEY } from './assets/enviroments';
+import { images } from './assets/images';
 import './assets/scroll_back_to_top';
 
 emailjs.init({
 	publicKey: EMAIL_KEY,
 });
 
-const imagesData = [
-	{
-		images: [
-			{
-				src: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp',
-				alt: 'Boat on Calm Water',
-			},
-			{
-				src: 'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp',
-				alt: 'Wintry Mountain Landscape',
-			},
-		],
-	},
-	{
-		images: [
-			{
-				src: 'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp',
-				alt: 'Mountains in the Clouds',
-			},
-			{
-				src: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp',
-				alt: 'Boat on Calm Water',
-			},
-		],
-	},
-	{
-		images: [
-			{
-				src: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp',
-				alt: 'Waves at Sea',
-			},
-			{
-				src: 'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp',
-				alt: 'Yosemite National Park',
-			},
-		],
-	},
-];
+const imagesData = images;
 const main_container = document.querySelector('#main_content');
 const nav_links = document.querySelectorAll('.nav-link');
+
 document.addEventListener('DOMContentLoaded', () => {
 	nav_links.forEach((link) => {
 		link.addEventListener('click', (e) => {
@@ -59,6 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			changePage(e.target, page_name);
 		});
 	});
+	// Set the default page (Portfolio) when the page loads
+	const defaultPageName = 'Portfolio'; // Change to your default page name
+	const defaultNavLink = Array.from(nav_links).find(
+		(link) => link.querySelector('h1').textContent === defaultPageName
+	);
+
+	if (defaultNavLink) {
+		const defaultPageElement = defaultNavLink.querySelector('h1');
+		changePage(defaultPageElement, defaultPageName);
+	}
 });
 
 function changePage(active_element, page_name) {
@@ -264,8 +239,7 @@ Whether I’m designing a game-ready dragon or a chic living room, I bring the s
 					)
 					.then(
 						() => {
-							console.log('SUCCESS!');
-							alert('Your message has been sent successfully!');
+							showAlert(true);
 							contactFormContainer.reset(); // Clear form fields
 						},
 						(error) => {
@@ -273,6 +247,7 @@ Whether I’m designing a game-ready dragon or a chic living room, I bring the s
 							alert(
 								'There was an error sending your message. Please try again later.'
 							);
+							showAlert(false, message);
 						}
 					);
 			});
@@ -280,5 +255,25 @@ Whether I’m designing a game-ready dragon or a chic living room, I bring the s
 				contactContainer.classList.add('visible'); // Add visible class after a short delay
 			}, 5);
 			break;
+	}
+}
+function showAlert(sucessful, message = '') {
+	if (sucessful) {
+		//show sucessful alert
+		const successAlert = document.getElementById('success-alert');
+		successAlert.classList.add('show');
+		setTimeout(() => {
+			successAlert.classList.remove('show');
+		}, 5000);
+	} else {
+		const failAlert = document.getElementById('fail-alert');
+		failAlert.classList.add('show');
+
+		failAlert.querySelector(
+			'div'
+		).textContent = `We Ran Into An Error: ${message}`;
+		setTimeout(() => {
+			failAlert.classList.remove('show');
+		}, 5000);
 	}
 }
