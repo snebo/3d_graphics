@@ -70,12 +70,12 @@ function changePage(active_element, page_name) {
 }
 
 function generateContent(page_type) {
-	const container = document.createElement('div');
-	const gallery_row = document.createElement('div');
-	gallery_row.classList.add('row', 'justify-content-center');
-	container.className = 'container my-4 fade-in';
 	switch (page_type.toLowerCase()) {
 		case 'portfolio':
+			const container = document.createElement('div');
+			const gallery_row = document.createElement('div');
+			gallery_row.classList.add('row', 'justify-content-center');
+			container.className = 'container my-4 fade-in';
 			imagesData.forEach((column) => {
 				const colDiv = document.createElement('div');
 				colDiv.className =
@@ -94,9 +94,50 @@ function generateContent(page_type) {
 			});
 			container.appendChild(gallery_row);
 			main_container.appendChild(container);
+			setTimeout(() => {
+				container.classList.add('visible'); // Add visible class after a short delay
+			}, 10);
 			break;
 		case 'about':
-			//smt
+			// Create the main container
+			const about_container = document.createElement('div');
+			about_container.className = 'container-fluid fade-in mb-5';
+
+			// Create the row
+			const row = document.createElement('div');
+			row.className = 'row justify-content-center';
+
+			// Create the column
+			const col = document.createElement('div');
+			col.className = 'col-md-8';
+
+			// Create the heading
+			const heading = document.createElement('h1');
+			heading.className = 'display-3 my-5 text-center about-me';
+			heading.textContent = 'About Me';
+
+			// Create the paragraph
+			const paragraph = document.createElement('p');
+			paragraph.className =
+				'my-3 text-center text-secondary about-me-text px-2';
+			paragraph.innerHTML = `Hi there! I’m Stefano, your friendly neighborhood 3D model magician.<br>For years, I’ve been sculpting virtual worlds, crafting intricate 3D models with Blender, and bringing them to life in Unity and Unreal Engine. Game development? It’s not just a hobby; it’s a full-blown love affair. But I don’t stop there—I’ve ventured into the realms of interior and exterior designs, construction, and even product modeling. From collaborating with visionary clients to dazzling event managers, I’ve turned ideas into jaw-dropping visuals that leave people wondering, ‘How did they do that?’  <br><br>
+Whether I’m designing a game-ready dragon or a chic living room, I bring the same level of passion and detail (and maybe a little bit of caffeine-fueled madness). Let’s just say, if it’s 3D, I’m probably dreaming about it.Let’s create something amazing together—because nothing beats the joy of turning pixels into possibilities!"`;
+
+			// Append heading and paragraph to the column
+			col.appendChild(heading);
+			col.appendChild(paragraph);
+
+			// Append column to the row
+			row.appendChild(col);
+
+			// Append row to the container
+			about_container.appendChild(row);
+
+			// Append the container to the body or a specific element in your HTML
+			main_container.appendChild(about_container);
+			setTimeout(() => {
+				about_container.classList.add('visible'); // Add visible class after a short delay
+			}, 5);
 			break;
 		case 'contact':
 			//smt
@@ -105,7 +146,4 @@ function generateContent(page_type) {
 			//smt
 			break;
 	}
-	setTimeout(() => {
-		container.classList.add('visible'); // Add visible class after a short delay
-	}, 10); // Delay to ensure the transition is applied
 }
