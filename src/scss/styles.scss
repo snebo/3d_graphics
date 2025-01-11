@@ -3,3 +3,67 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Your custom styles below
+.nav-link {
+	> h1 {
+		font-weight: 300;
+		color: #aaa;
+		cursor: pointer;
+		transition: ease-in-out 200ms;
+
+		&:hover {
+			color: rgb(90, 90, 90);
+		}
+
+		&.active {
+			color: rgb(36, 36, 36);
+		}
+	}
+}
+
+.nav-icon {
+	> img {
+		filter: grayscale(100%) brightness(0.5) contrast(0.2);
+		transition: filter 0.3s ease; /* Optional: for smooth transitions */
+
+		&:hover {
+			filter: none;
+			cursor: pointer;
+		}
+	}
+}
+
+.nav-menu {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	background-color: transparent;
+	width: 35px;
+	height: 35px;
+	border: none;
+	padding: 2px 5px;
+	transition: 200ms ease-in;
+	display: none;
+	z-index: 10000;
+
+	&:hover {
+		transform: scale(1.2);
+	}
+}
+.fade-in {
+	opacity: 0; /* Start with opacity 0 */
+	transition: opacity 0.5s ease-in; /* Transition effect */
+}
+
+.fade-in.visible {
+	opacity: 1; /* End with opacity 1 */
+}
+
+@media (max-width: 600px) {
+	.nav-menu {
+		display: block;
+	}
+
+	.page-nav {
+		display: none !important;
+	}
+}
