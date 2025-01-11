@@ -3,6 +3,7 @@ import './scss/styles.scss';
 
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap';
+import './assets/scroll_back_to_top';
 
 const imagesData = [
 	{
