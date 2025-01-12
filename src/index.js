@@ -52,30 +52,37 @@ function changePage(active_element, page_name) {
 function generateContent(page_type) {
 	switch (page_type.toLowerCase()) {
 		case 'portfolio':
-			const container = document.createElement('div');
-			const gallery_row = document.createElement('div');
-			gallery_row.classList.add('row', 'justify-content-center');
-			container.className = 'container my-4 fade-in';
-			imagesData.forEach((column) => {
-				const colDiv = document.createElement('div');
-				colDiv.className =
-					'col-lg-4 mb-4 mb-lg-0 d-flex flex-column align-items-center';
+			const projectsContainer = document.createElement('div');
+			projectsContainer.className = 'container overflow-hidden mt-3 pt-2';
 
-				column.images.forEach((image) => {
-					const img = document.createElement('img');
-					img.src = image.src;
-					img.alt = image.alt;
-					img.className = 'w-100 shadow-1-strong rounded mb-4';
+			const projectsGrid = document.createElement('div');
+			projectsGrid.className = 'row gy-3 gy-md-2 bsb-project-1-grid';
 
-					colDiv.appendChild(img);
-				});
+			// Create project items
+			imagesData.forEach((image) => {
+				const projectItem = document.createElement('div');
+				projectItem.className = 'col-12 col-md-6 col-lg-4 bsb-project-1-item';
 
-				gallery_row.appendChild(colDiv);
+				projectItem.innerHTML = `
+            <figure class="rounded rounded-4 overflow-hidden bsb-overlay-hover">
+                <a href="#!">
+                    <img class="img-fluid bsb-scale-up bsb-hover-scale" 
+                         src="${image.src}" 
+                         alt="${image.alt}">
+                </a>
+                <figcaption>
+                    <h3 class="text-white bsb-hover-fadeInLeft">${image.caption}</h3>
+                </figcaption>
+            </figure>
+        `;
+
+				projectsGrid.appendChild(projectItem);
 			});
-			container.appendChild(gallery_row);
-			main_container.appendChild(container);
+
+			projectsContainer.appendChild(projectsGrid);
+			main_container.appendChild(projectsContainer);
 			setTimeout(() => {
-				container.classList.add('visible'); // Add visible class after a short delay
+				projectsContainer.classList.add('visible'); // Add visible class after a short delay
 			}, 10);
 			break;
 		case 'about':
