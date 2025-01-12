@@ -15,6 +15,17 @@ const imagesData = images;
 const main_container = document.querySelector('#main_content');
 const nav_links = document.querySelectorAll('.nav-link');
 
+// Wait for the page and all images to load
+window.onload = function () {
+	const loader = document.getElementById('loader');
+	loader.classList.add('loader-fade-out');
+
+	// Optionally, remove the loader after fade-in completes
+	setTimeout(() => {
+		loader.style.display = 'none'; // Hide the loader
+	}, 1000); // Match the animation duration
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 	nav_links.forEach((link) => {
 		link.addEventListener('click', (e) => {

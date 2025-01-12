@@ -22,6 +22,29 @@
 		<title>Stefano Nebo</title>
 	</head>
 	<body class="d-flex flex-column min-vh-100">
+		<!-- Loader -->
+		<div
+			id="loader"
+			class="d-flex justify-content-center align-items-center bg-body-secondary"
+			style="
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				z-index: 20000;
+				pointer-events: none;
+				cursor: default;
+				overflow-y: hidden;
+				overflow-x: hidden;
+			"
+		>
+			<div
+				class="spinner-grow text-primary"
+				style="width: 5rem; height: 5rem"
+				role="status"
+			>
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
 		<!-- Back to top button -->
 		<button
 			type="button"
@@ -227,6 +250,7 @@
 			</div>
 			<!-- Copyright -->
 		</footer>
+
 		<script src="https://unpkg.com/jquery@3.6.1/dist/jquery.min.js"></script>
 		<script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
 		<script src="https://unpkg.com/isotope-packery@2.0.1/packery-mode.pkgd.min.js"></script>
